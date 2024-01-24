@@ -34,6 +34,15 @@ CREATE TABLE charity_menu (
 id_menu INT PRIMARY KEY auto_increment,
  items VARCHAR(100)
  ); 
+ CREATE TABLE customer (
+    id_customer int PRIMARY KEY auto_increment,
+    location varchar (150),
+    quantity int,
+    nickname varchar (50),
+    customer_type_id int,
+    FOREIGN KEY (customer_type_id)
+    REFERENCES user_type(type_id)
+); 
 -- create order table
 CREATE TABLE food_order (
  order_id INT PRIMARY KEY auto_increment,
@@ -51,7 +60,7 @@ CREATE TABLE food_order (
     REFERENCES user(user_id),
       -- add customer foreign key
     FOREIGN KEY (id_customer)
-    REFERENCES user(user_id),
+    REFERENCES customer (id_customer),
       -- add order status foreign key
     FOREIGN KEY (id_order_status)
     REFERENCES order_status(status_id),
@@ -59,4 +68,11 @@ CREATE TABLE food_order (
     FOREIGN KEY (charity_menu_id)
     REFERENCES charity_menu(id_menu)
 ); 
+
+
+
+
+
+
+
 
